@@ -3,7 +3,10 @@ class CurrentUser {
     this.id = id;
     this.name = name;
   }
-  //method for returning first name only
+
+  getFirstName() {
+    return this.name.slice(0, this.name.indexOf(' '));
+  }
 }
 
 export default CurrentUser;
