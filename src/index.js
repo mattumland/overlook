@@ -1,16 +1,25 @@
 import './css/base.scss';
-import APICaller from './APICaller';
 
-import './images/turing-logo.png'
+import APICaller from './APICaller';
 
 const api = new APICaller();
 
-console.log(api.getAllCustomers());
-console.log(api.getOneCustomer(40));
-console.log(api.getAllRooms());
-console.log(api.getAllBookings());
+
+let someData;
 
 Promise.all([api.getAllCustomers(), api.getOneCustomer(12), api.getAllRooms()])
   .then((allData) => {
-    console.log(allData[0].customers);
+    someData = allData[0].customers;
+    console.log(someData);
   });
+
+
+window.addEventListener('load', doSomeStuff)
+
+function doSomeStuff() {
+  showSomeData();
+}
+
+function showSomeData() {
+    console.log(someData);
+}
