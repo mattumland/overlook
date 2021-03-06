@@ -24,4 +24,12 @@ describe('Current User', function() {
       expect(user.name).to.equal('Bilboink Burgers');
     });
   });
+
+  describe('Current User methods', function() {
+    it.only('should be able to return the first name only', function() {
+      const user = new CurrentUser(25, 'Bilboink Burgers');
+      expect(user.getFirstName()).to.equal('Bilboink');
+    })
+
+  })
 });
