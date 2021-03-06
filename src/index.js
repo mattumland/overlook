@@ -1,4 +1,7 @@
-import './css/base.scss';
+// import './css/_base.scss';
+import './css/styles.scss';
+import './assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg';
+
 
 import APICaller from './APICaller';
 
@@ -10,11 +13,11 @@ let someData;
 Promise.all([api.getAllCustomers(), api.getOneCustomer(12), api.getAllRooms()])
   .then((allData) => {
     someData = allData[0].customers;
-    console.log(someData);
+    // console.log(someData);
   });
 
 
-window.addEventListener('load', doSomeStuff)
+// window.addEventListener('load', doSomeStuff)
 
 function doSomeStuff() {
   showSomeData();
