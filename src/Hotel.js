@@ -28,25 +28,18 @@ class Hotel {
   };
 
   filterRoomList(roomList, roomTypes) {
+    const result = roomTypes.reduce((list, type) => {
+      const thisType = roomList.filter(room => room.roomType === type);
+      list = list.concat(thisType);
+      return list;
+    }, []);
+    return this.sortListByNumber(result);
+  };
 
+  sortListByNumber(roomList) {
+    return roomList.sort((roomA, roomB) => roomA.number - roomB.number);
   };
 
 }
-
-
-/*
-getAllBookings(userid) => array of bookings by given User
-
-getTotalSpent(userid) => number of $ spend by given User
-
-getRoomDetails(array of room numbers) => array of room objects (use to populate current display to show the results of a search or filter)
-
-getAvailableRooms(date string) = array of bookings w/o bookings on the given date
-
-filterRoomList(array of rooms, array of roomTypes) => array of rooms
-
-
-*/
-
 
 export default Hotel;
