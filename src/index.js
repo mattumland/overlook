@@ -1,10 +1,16 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/base.scss';
+import APICaller from './APICaller';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png'
 
-console.log('This is the JavaScript entry file - your code begins here.');
+const api = new APICaller();
+
+console.log(api.getAllCustomers());
+console.log(api.getOneCustomer(40));
+console.log(api.getAllRooms());
+console.log(api.getAllBookings());
+
+Promise.all([api.getAllCustomers(), api.getOneCustomer(12), api.getAllRooms()])
+  .then((allData) => {
+    console.log(allData[0].customers);
+  });
