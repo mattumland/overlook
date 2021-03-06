@@ -1,6 +1,6 @@
 import chai from 'chai';
 const expect = chai.expect;
-import CurrentUser from 'src/CurrentUser.js';
+import CurrentUser from '../src/CurrentUser.js';
 
 describe('Current User', function() {
   describe('Initialize current user', function () {
