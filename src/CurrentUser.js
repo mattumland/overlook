@@ -1,7 +1,7 @@
 class CurrentUser {
-  constructor(id, name) {
-    this.id = id;
-    this.name = name;
+  constructor(userData) {
+    this.id = userData.id;
+    this.name = userData.name;
   }
 
   getFirstName() {

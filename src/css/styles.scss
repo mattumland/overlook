@@ -78,14 +78,15 @@ body {
   display: flex;
   flex-direction: column;
   background-color: $paper;
+  border-radius: 2px;
   padding: $cardSpace/4;
   margin: $cardSpace 0 $cardSpace 0;
 }
 
 .roomCard {
   background-color: $paper;
-  border-radius: 15px;
-  padding: $cardSpace/4 0 0 $cardSpace/2;
+  border-radius: 2px;
+  padding: $cardSpace/4 0 $cardSpace/4 $cardSpace/2;
   margin: $cardSpace/2 0 $cardSpace/2 0;
 }
 
@@ -124,8 +125,8 @@ h4 {
 .roomFeatures {
   font-size: 16px;
   font-weight: 400;
-  list-style: none;
+  list-style: circle;
   border-top: solid $background-color;
-  padding: $cardSpace/4 0 $cardSpace/4 $cardSpace/2;
+  padding: $cardSpace/4 0 $cardSpace/4 $cardSpace;
   margin: $cardSpace/4 0 0 0;
 }
