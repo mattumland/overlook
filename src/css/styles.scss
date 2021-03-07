@@ -47,9 +47,9 @@ header {
 }
 
 body {
-  line-height: 1;
-  // background: url('src/assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg');
-  background-color: #014421;
+  // line-height: 1;
+  // background: url(".src/assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg");
+  background-color: $background-color;
   font-family: $primary-font;
 }
 
@@ -65,29 +65,67 @@ body {
 
 // *** Containers *** //
 .mainScroll {
-  padding: 0 25px 0 25px;
+  // display: grid;
+  // grid-template-columns: 1fr;
+  // grid-template-rows: repeat(4, 1fr);
+  // grid-column-gap: 0px;
+  // grid-row-gap: 0px;
+  overflow: scroll;
+  padding: 0 20px 0 20px;
 }
 
+.userCard {
+  display: flex;
+  flex-direction: column;
+  background-color: $paper;
+  padding: $cardSpace/4;
+  margin: $cardSpace 0 $cardSpace 0;
+}
 
 .roomCard {
-  background-color: white;
-  padding: 0 10px 0 15px;
+  background-color: $paper;
+  border-radius: 15px;
+  padding: $cardSpace/4 0 0 $cardSpace/2;
+  margin: $cardSpace/2 0 $cardSpace/2 0;
 }
+
+
 
 // *** Text Elements *** //
 
 h1 {
   color: $paper;
-  font-size: 40px;
-  letter-spacing: .25em;
+  font-size: 55px;
+  letter-spacing: .10em;
   margin: 105px 0 0 0;
 }
 
-h2,h3,h4 {
-  background-color: white;
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: $cardSpace/4;
+}
+
+.listHeading {
+  color: $paper;
+  font-weight: 200;
+  margin: $cardSpace 0 $cardSpace/4 0;
+}
+
+h4 {
+  font-weight: 200;
+  font-size: 20px;
+  font-style: italic;
 }
 
 .roomFeatures {
+  font-size: 16px;
+  font-weight: 400;
   list-style: none;
-  padding: 0 35px 0 0;
+  border-top: solid $background-color;
+  padding: $cardSpace/4 0 $cardSpace/4 $cardSpace/2;
+  margin: $cardSpace/4 0 0 0;
 }

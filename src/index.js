@@ -1,8 +1,5 @@
-// import './css/_base.scss';
 import './css/styles.scss';
-import './assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg';
-
-
+// import './assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg';
 import APICaller from './APICaller';
 
 const api = new APICaller();
