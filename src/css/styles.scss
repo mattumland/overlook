@@ -1,32 +1,32 @@
-@import '_base';
+@import 'base';
 
 // *** Reset *** //
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  vertical-align: baseline;
-}
+// html, body, div, span, applet, object, iframe,
+// h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+// a, abbr, acronym, address, big, cite, code,
+// del, dfn, em, img, ins, kbd, q, s, samp,
+// small, strike, strong, sub, sup, tt, var,
+// b, u, i, center,
+// dl, dt, dd, ol, ul, li,
+// fieldset, form, label, legend,
+// table, caption, tbody, tfoot, thead, tr, th, td,
+// article, aside, canvas, details, embed,
+// figure, figcaption, footer, header, hgroup,
+// menu, nav, output, ruby, section, summary,
+// time, mark, audio, video {
+//   margin: 0;
+//   padding: 0;
+//   border: 0;
+//   vertical-align: baseline;
+// }
 
-.parent {
-display: grid;
-grid-template-columns: 1fr;
-grid-template-rows: repeat(4, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
-}
+// .parent {
+// display: grid;
+// grid-template-columns: 1fr;
+// grid-template-rows: repeat(4, 1fr);
+// grid-column-gap: 0px;
+// grid-row-gap: 0px;
+// }
 
 *,
 *:after,
@@ -37,24 +37,23 @@ padding: 0;
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
+// article, aside, details, figcaption, figure,
+// footer, header, hgroup, menu, nav, section {
+//   display: block;
+// }
+
+header {
+
 }
 
 body {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-body {
-  line-height: 1;
-  background-color: #1F1F1F;
+  // line-height: 1;
+  // background: url(".src/assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg");
+  background-color: $background-color;
   font-family: $primary-font;
 }
+
+
 
 // *** Wrapper *** //
 .wrapper {
@@ -63,20 +62,70 @@ body {
   overflow-x: hidden;
 }
 
-// *** Text Elements *** //
-h1 {
-  color: #fff;
-  display: inline;
-  font-size: 5.4em;
-  letter-spacing: .2em;
-}
-h4 {
-  font-size: 3em;
-  font-family: $secondary-font;
+
+// *** Containers *** //
+.mainScroll {
+  // display: grid;
+  // grid-template-columns: 1fr;
+  // grid-template-rows: repeat(4, 1fr);
+  // grid-column-gap: 0px;
+  // grid-row-gap: 0px;
+  overflow: scroll;
+  padding: 0 20px 0 20px;
 }
 
-p {
-  font-size: 1em;
-  font-weight: 600;
-  letter-spacing: .1em;
+.userCard {
+  display: flex;
+  flex-direction: column;
+  background-color: $paper;
+  padding: $cardSpace/4;
+  margin: $cardSpace 0 $cardSpace 0;
+}
+
+.roomCard {
+  background-color: $paper;
+  border-radius: 15px;
+  padding: $cardSpace/4 0 0 $cardSpace/2;
+  margin: $cardSpace/2 0 $cardSpace/2 0;
+}
+
+
+
+// *** Text Elements *** //
+
+h1 {
+  color: $paper;
+  font-size: 55px;
+  letter-spacing: .10em;
+  margin: 105px 0 0 0;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: $cardSpace/4;
+}
+
+.listHeading {
+  color: $paper;
+  font-weight: 200;
+  margin: $cardSpace 0 $cardSpace/4 0;
+}
+
+h4 {
+  font-weight: 200;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.roomFeatures {
+  font-size: 16px;
+  font-weight: 400;
+  list-style: none;
+  border-top: solid $background-color;
+  padding: $cardSpace/4 0 $cardSpace/4 $cardSpace/2;
+  margin: $cardSpace/4 0 0 0;
 }

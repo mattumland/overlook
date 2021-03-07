@@ -26,7 +26,7 @@ describe('Current User', function() {
   });
 
   describe('Current User methods', function() {
-    it.only('should be able to return the first name only', function() {
+    it('should be able to return the first name only', function() {
       const user = new CurrentUser(25, 'Bilboink Burgers');
       expect(user.getFirstName()).to.equal('Bilboink');
     })
