@@ -1,33 +1,5 @@
 @import 'base';
 
-// *** Reset *** //
-// html, body, div, span, applet, object, iframe,
-// h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-// a, abbr, acronym, address, big, cite, code,
-// del, dfn, em, img, ins, kbd, q, s, samp,
-// small, strike, strong, sub, sup, tt, var,
-// b, u, i, center,
-// dl, dt, dd, ol, ul, li,
-// fieldset, form, label, legend,
-// table, caption, tbody, tfoot, thead, tr, th, td,
-// article, aside, canvas, details, embed,
-// figure, figcaption, footer, header, hgroup,
-// menu, nav, output, ruby, section, summary,
-// time, mark, audio, video {
-//   margin: 0;
-//   padding: 0;
-//   border: 0;
-//   vertical-align: baseline;
-// }
-
-// .parent {
-// display: grid;
-// grid-template-columns: 1fr;
-// grid-template-rows: repeat(4, 1fr);
-// grid-column-gap: 0px;
-// grid-row-gap: 0px;
-// }
-
 *,
 *:after,
 *:before {
@@ -36,24 +8,16 @@ margin: 0;
 padding: 0;
 }
 
-/* HTML5 display-role reset for older browsers */
-// article, aside, details, figcaption, figure,
-// footer, header, hgroup, menu, nav, section {
-//   display: block;
-// }
-
 header {
 
 }
 
 body {
-  // line-height: 1;
-  // background: url(".src/assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg");
+  background: url("../assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg");
+  background-size: 100%;
   background-color: $background-color;
   font-family: $primary-font;
 }
-
-
 
 // *** Wrapper *** //
 .wrapper {
@@ -61,7 +25,6 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 }
-
 
 // *** Containers *** //
 .mainScroll {
@@ -74,52 +37,22 @@ body {
   padding: 0 20px 0 20px;
 }
 
-.userCard {
-  display: flex;
-  flex-direction: column;
+.card {
   background-color: $paper;
   border-radius: 2px;
+}
+
+.userCard {
+  @extend .card;
+  display: flex;
+  flex-direction: column;
   padding: $cardSpace/4;
-  margin: $cardSpace 0 $cardSpace 0;
 }
 
 .roomCard {
-  background-color: $paper;
-  border-radius: 2px;
+  @extend .card;
   padding: $cardSpace/4 0 $cardSpace/4 $cardSpace/2;
   margin: $cardSpace/2 0 $cardSpace/2 0;
-}
-
-
-
-// *** Text Elements *** //
-
-h1 {
-  color: $paper;
-  font-size: 55px;
-  letter-spacing: .10em;
-  margin: 105px 0 0 0;
-}
-
-h2 {
-  font-size: 30px;
-}
-
-h3 {
-  font-size: 20px;
-  margin-bottom: $cardSpace/4;
-}
-
-.listHeading {
-  color: $paper;
-  font-weight: 200;
-  margin: $cardSpace 0 $cardSpace/4 0;
-}
-
-h4 {
-  font-weight: 200;
-  font-size: 20px;
-  font-style: italic;
 }
 
 .roomFeatures {
@@ -129,4 +62,90 @@ h4 {
   border-top: solid $background-color;
   padding: $cardSpace/4 0 $cardSpace/4 $cardSpace;
   margin: $cardSpace/4 0 0 0;
+}
+
+.userInputCard {
+  @extend .card;
+  padding: $cardSpace/4;
+}
+
+.datePicker {
+  background-color: $paper;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  padding: $cardSpace/4;
+  margin: $cardSpace/4 0 $cardSpace/2 0;
+}
+
+.roomTypeInput {
+  display: flex;
+  flex-direction: column;
+
+  input[type="checkbox"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+  }
+
+  label {
+    @extend .card;
+    padding: $cardSpace/4  $cardSpace/4 ;
+    font-size: 16px;
+    border: 1px solid #000000;
+    margin: $cardSpace/4 0;
+  }
+
+  input[type="checkbox"]:checked + label {
+    background-color: $background-color;
+    color: $paper;
+  }
+
+  input[type="checkbox"]:focus + label {
+    border: 3px solid #000000;
+  }
+
+  button {
+    background-color: #557D59;
+    color: $paper;
+    font-size: 18px;
+    align-self: flex-end;
+    border: 2px solid $background-color;
+    border-radius: 2px;
+    padding: $cardSpace/4;
+  }
+
+}
+
+// *** Text Elements *** //
+
+h1 {
+  color: $paper;
+  font-size: 55px;
+  letter-spacing: .05em;
+  margin: 105px 0 -14px 0;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+h4 {
+  font-weight: 200;
+  font-size: 18px;
+  font-style: italic;
+}
+
+.heading {
+  color: $paper;
+  font-weight: 200;
+  margin: $cardSpace/2 0 $cardSpace/4 0;
+}
+
+// *** Utility classes *** //
+.hidden {
+  opacity: 0;
 }
