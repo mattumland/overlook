@@ -43,19 +43,41 @@ function buildBookingCard(booking) {
       <h3>Room ${booking.roomNumber} - ${roomData[0].roomType}</h3>
       <h4>${booking.date}</h4>
     </section>`;
-    // <ul class="roomFeatures">
-    //   <li>Bed size: ${roomData[0].bedSize} </li>
-    //   <li>Number of beds: ${roomData[0].numBeds}</li>
-    //   <li>Bidet: ${bidet}</li>
-    // </ul>
+    //may need to add the booking ID to this block so they can be targeted later
 };
 
-function buildRoomDeck() {
-
+function buildRoomDeck(rooms) {
+  clearList();
+  rooms.forEach(room => {
+    roomList.innerHTML += buildRoomCard(room);
+  });
 }
 
-function buildRoomCard() {
-//probably needs to include
+function buildRoomCard(room) {
+  //
+  //will need a booking button
+  //will likely need to be targeted via bubbling
+  const bidet = (room.bidet) ? "Yup" : "Nope";
+    return `
+      <section class="roomCard">
+        <h3>Room ${room.number} - ${room.roomType}</h3>
+        <h4>$${room.costPerNight} per night</h4>
+      </section>
+        <ul class="roomFeatures">
+          <li>Bed size: ${room.bedSize} </li>
+          <li>Number of beds: ${room.numBeds}</li>
+          <li>Bidet: ${bidet}</li>
+        </ul>
+      </section>`
+}
+
+function updateHeading(message) {
+  //update the text for the DOM element
+  //add id to line 40 in markup
+}
+
+function clearList() {
+  roomList.innerHTML = '';
 }
 
 function pageLoad() {
@@ -68,11 +90,10 @@ function pageLoad() {
 }
 
 function roomSearch() {
-  console.log(formatDate(searchDate.value));
-  const availableRooms = hotel.getAvailableRooms(searchDate.value);
+  const availableRooms = hotel.getAvailableRooms(formatDate(searchDate.value));
   const roomTypes = getFormInput();
   const searchResults = hotel.filterRoomList(availableRooms, roomTypes);
-  console.log(searchResults);
+  buildRoomDeck(searchResults);
 }
 
 function getFormInput() {
