@@ -12,6 +12,7 @@ const searchDate = document.querySelector("#book-date");
 const dateError = document.querySelector("#date-error");
 const formBoxes = document.querySelectorAll("input[type='checkbox']");
 const headsUp = document.querySelector("#heads-up");
+const roomCard = document.querySelector("#room-card");
 
 const api = new APICaller();
 let user;
@@ -57,8 +58,6 @@ function buildRoomDeck(rooms, date) {
 }
 
 function buildRoomCard(room, date) {
-  //will need a booking button
-  //will likely need to be targeted via bubbling
   const bidet = (room.bidet) ? "Yup" : "Nope";
     return `
       <section class="roomCard">
@@ -84,7 +83,6 @@ function pageLoad() {
 
 function bookRoom(targetId) {
   const bookingDetails = targetId.split('-');
-  console.log(bookingDetails);
   const booking = {"userID": user.id, "date": bookingDetails[1], "roomNumber": parseInt(bookingDetails[0])};
   Promise.all([api.bookARoom(booking)])
     .then((bookingResponse) => {
@@ -130,7 +128,7 @@ function addConfirmationCard(message, bookingDetails) {
     <h2>Booking confirmed
     <h3>Room ${bookingDetails[0]} - ${bookingDetails[1]}</h3>
     <h4>${message}</h4>
-    <button>Done</button>
+    <button id='home'>Done</button>
   </section>`
   roomList.innerHTML += confirmation;
 }
@@ -167,5 +165,12 @@ function resetSearchForm() {
 window.addEventListener('load', pageLoad);
 roomSearchButton.addEventListener('click', roomSearch);
 roomList.addEventListener('click', function(event) {
-  // console.log(event.target.id) });
-  bookRoom(event.target.id) });
+  if (!event.target.id) {
+    return
+  } else if (event.target.id === 'home') {
+    clearList();
+    pageLoad();
+  } else {
+    bookRoom(event.target.id)
+    }
+  });
