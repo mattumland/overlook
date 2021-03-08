@@ -75,6 +75,7 @@ function buildRoomCard(room, date) {
 function pageLoad() {
   Promise.all([api.getOneCustomer(1), api.getAllRooms(), api.getAllBookings()])
     .then((allData) => {
+      updateHeadsUp('Your Reservations')
       createUser(allData[0]);
       createHotel(allData[1].rooms, allData[2].bookings);
       buildUserDashboard();
@@ -86,7 +87,6 @@ function bookRoom(targetId) {
   const booking = {"userID": user.id, "date": bookingDetails[1], "roomNumber": parseInt(bookingDetails[0])};
   Promise.all([api.bookARoom(booking)])
     .then((bookingResponse) => {
-    console.log(bookingResponse[0].message);
     addConfirmationCard(bookingResponse[0].message, bookingDetails)
     });
 }
@@ -155,10 +155,6 @@ function fierceApology() {
 
 function clearList() {
   roomList.innerHTML = '';
-}
-
-function resetSearchForm() {
-  // return all search fields to empty or unchecked
 }
 
 // EVENT LISTENERS
