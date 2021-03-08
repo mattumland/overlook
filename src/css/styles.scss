@@ -147,7 +147,16 @@ h4 {
   margin: $cardSpace/2 0 $cardSpace/4 0;
 }
 
+.error {
+  color: $error;
+  margin:  -$cardSpace/4 0 $cardSpace/4 $cardSpace/4;
+}
+
 // *** Utility classes *** //
 .hidden {
   opacity: 0;
+}
+
+.noRender {
+  display: none;
 }

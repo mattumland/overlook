@@ -21,8 +21,9 @@
       <h3 class="heading">Book a room</h3>
       <section id="user-input" class="userInputCard">
         <h4>Check-in date </h4>
-        <input class="datePicker" type="date" id="book-date" value=""></input>
+        <input class="datePicker" type="date" id="book-date"></input>
         <label class="hidden" for="book-date">Check-in date</label>
+        <p id="date-error" class="error noRender">&#128680;Please enter a check-in date</p>
         <h4>Filter by room type</h4>
         <div id="roomTypeInput" class="roomTypeInput">
           <input type="checkbox" id="single room" name="singleRoom">
@@ -37,7 +38,7 @@
         </div>
       </section>
 
-      <h3 class="heading">Your Reservations<h3>
+      <h3 id="heads-up" class="heading">Your Reservations<h3>
       <section id="room-list" class="roomList">
 
       </section>

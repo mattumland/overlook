@@ -8,29 +8,43 @@ class APICaller {
   getAllCustomers() {
     return fetch(this.customer)
    .then(response => response.json())
-   .then(data => data);
+   .catch(err => console.log(err))
  };
 
   getOneCustomer(id) {
     return fetch(this.customer + `/${id}`)
     .then(response => response.json())
-    .then(data => data);
+    .catch(err => console.log(err))
   };
 
   getAllRooms() {
     return fetch(this.rooms)
     .then(response => response.json())
-    .then(data => data)
+    .catch(err => console.log(err))
   };
 
   getAllBookings() {
     return fetch(this.bookings)
     .then(response => response.json())
-    .then(data => data)
+    .catch(err => console.log(err))
   };
 
-  addBooking() {
-
+  bookARoom(booking) {
+    // console.log(JSON.stringify(booking));
+    return fetch(this.bookings, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(booking),
+    })
+    .then(response => {
+      console.log(response);
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      } else {
+        response.json()
+      }
+    })
+    .catch(err => console.log(err))
   };
 
   deleteBooking() {
@@ -39,10 +53,3 @@ class APICaller {
 };
 
 export default APICaller;
-
-// getSingleCustomer(this.singleCustomer, userId)
-// getAllCustomers(this.allCustomer)
-// getAllRooms(this.rooms)
-// getAllBookings(this.bookings)
-// addBooking(this.bookings)
-// deleteBooking(this.bookings, id);
