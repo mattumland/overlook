@@ -84,13 +84,12 @@ function pageLoad() {
 
 function bookRoom(targetId) {
   const bookingDetails = targetId.split('-');
-  const booking = { "userID": user.id, "date": bookingDetails[1], "roomNumber": bookingDetails[0]};
-  // { "userID": 48, "date": "2019/09/23", "roomNumber": 4 }
-  console.log('booking', booking);
+  console.log(bookingDetails);
+  const booking = {"userID": user.id, "date": bookingDetails[1], "roomNumber": parseInt(bookingDetails[0])};
   Promise.all([api.bookARoom(booking)])
     .then((bookingResponse) => {
-    console.log(bookingResponse);
-    // addConfirmationCard(bookingReponse[0].message)
+    console.log(bookingResponse[0].message);
+    addConfirmationCard(bookingResponse[0].message, bookingDetails)
     });
 }
 
@@ -124,12 +123,12 @@ function getFormInput() {
   }, []);
 }
 
-function addConfirmationCard(message) {
+function addConfirmationCard(message, bookingDetails) {
   clearList();
   const confirmation = `
   <section class="roomCard">
     <h2>Booking confirmed
-    <h3>Room ${room.number} - ${room.roomType}</h3>
+    <h3>Room ${bookingDetails[0]} - ${bookingDetails[1]}</h3>
     <h4>${message}</h4>
     <button>Done</button>
   </section>`

@@ -30,19 +30,17 @@ class APICaller {
   };
 
   bookARoom(booking) {
-    // console.log(JSON.stringify(booking));
     return fetch(this.bookings, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(booking),
+      body: JSON.stringify(booking)
     })
     .then(response => {
-      console.log(response);
+
       if (!response.ok) {
         throw new Error(response.statusText);
-      } else {
-        response.json()
       }
+      return response.json();
     })
     .catch(err => console.log(err))
   };
