@@ -7,11 +7,13 @@ import Hotel from './Hotel';
 const userGreeting = document.querySelector('#user-greeting');
 const accountTotal = document.querySelector('#account-total');
 const roomList = document.querySelector('#room-list');
+const roomSearchButton = document.querySelector('#room-search');
+const searchDate = document.querySelector("#book-date");
+const formBoxes = document.querySelectorAll("input[type='checkbox']");
 
 const api = new APICaller();
 let user;
 let hotel;
-
 
 const createUser = (userData) => {
   user = new CurrentUser(userData);
@@ -65,12 +67,32 @@ function pageLoad() {
     });
 }
 
+function roomSearch() {
+  console.log(formatDate(searchDate.value));
+  const availableRooms = hotel.getAvailableRooms(searchDate.value);
+  const roomTypes = getFormInput();
+  const searchResults = hotel.filterRoomList(availableRooms, roomTypes);
+  console.log(searchResults);
+}
 
-//grab dom nodes, add IDs to mark up
-//load page event addEventListener
-//  getData
-// create current user
-//
+function getFormInput() {
+  const formKeys = Object.keys(formBoxes)
+    return formKeys.reduce((roomTypes, key) => {
+    if (formBoxes[key].checked) {
+      roomTypes.push(formBoxes[key].id);
+    }
+    return roomTypes
+  }, []);
+}
+
+function formatDate(date) {
+  return date.replaceAll('-','/');
+}
+
+function resetSearchForm() {
+  // return all search fields to empty or unchecked
+}
 
 // EVENT LISTENERS
-window.addEventListener('load', pageLoad)
+window.addEventListener('load', pageLoad);
+roomSearchButton.addEventListener('click', roomSearch);

@@ -105,13 +105,14 @@ body {
   }
 
   button {
-    background-color: #557D59;
+    background-color: $background-color;
     color: $paper;
     font-size: 18px;
     align-self: flex-end;
     border: 2px solid $background-color;
     border-radius: 2px;
     padding: $cardSpace/4;
+    margin: $cardSpace/4 0;
   }
 
 }

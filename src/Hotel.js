@@ -28,6 +28,9 @@ class Hotel {
   };
 
   filterRoomList(roomList, roomTypes) {
+    if (roomTypes.length === 0) {
+      roomTypes = ['single room', 'suite', 'residential suite', 'junior suite'];
+    }
     const result = roomTypes.reduce((list, type) => {
       const thisType = roomList.filter(room => room.roomType === type);
       list = list.concat(thisType);
