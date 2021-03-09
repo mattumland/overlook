@@ -15,14 +15,7 @@ body {
   font-family: $primary-font;
 }
 
-// *** Wrapper *** //
-.wrapper {
-  margin: 50px;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-// *** Containers *** //
+// *** Containers and cards *** //
 .mainScroll {
   overflow: scroll;
   padding: 0 20px 0 20px;
@@ -33,7 +26,7 @@ body {
     color: $paper;
     font-size: 14px;
     border: 2px solid $background-color;
-    border-radius: 2px;
+    border-radius: $corner;
     padding: $cardSpace/4;
     margin: $cardSpace/4 0;
   }
@@ -41,12 +34,11 @@ body {
 
 .card {
   background-color: $paper;
-  border-radius: 2px;
+  border-radius: $corner;
 }
 
 .loginCard {
     @extend .card;
-    // max-width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -88,7 +80,7 @@ body {
 .inputField {
   background-color: $paper;
   border: 1px solid #000000;
-  border-radius: 2px;
+  border-radius: $corner;
   padding: $cardSpace/4;
   margin: $cardSpace/4 0 $cardSpace/2 0;
 }
@@ -126,15 +118,13 @@ body {
     font-size: 18px;
     align-self: flex-end;
     border: 2px solid $background-color;
-    border-radius: 2px;
+    border-radius: $corner;
     padding: $cardSpace/4;
     margin: $cardSpace/4 0;
   }
-
 }
 
 // *** Text Elements *** //
-
 h1 {
   color: $paper;
   font-size: 55px;
@@ -152,7 +142,7 @@ h3 {
 
 h4 {
   font-weight: 200;
-  font-size: 18px;
+  font-size: 16px;
   font-style: italic;
 }
 
@@ -168,7 +158,6 @@ h4 {
 }
 
 // *** Media Queries *** //
-
 @media screen and (min-width: 698px) {
   .mainScroll {
     width: 85%;
@@ -181,8 +170,6 @@ h4 {
       flex-direction: column;
       max-width: 70%;
       padding: $cardSpace/4;
-
-
     }
 
   .grid {
@@ -197,24 +184,20 @@ h4 {
 
   .heading {
     grid-area: upperLeft;
-    position: sticky;
     }
 
   .userInputCard {
     grid-area: lowerLeft;
     max-height: 300px;
-    position: sticky;
     }
 
   .listHeading {
     grid-area: upperRight;
-    position: sticky;
     }
 
   .roomList {
     grid-area: lowerRight;
     margin-top: -$cardSpace/2;
-    overflow: scroll;
     }
   }
 
