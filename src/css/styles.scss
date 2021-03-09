@@ -28,13 +28,9 @@ body {
 
 // *** Containers *** //
 .mainScroll {
-  // display: grid;
-  // grid-template-columns: 1fr;
-  // grid-template-rows: repeat(4, 1fr);
-  // grid-column-gap: 0px;
-  // grid-row-gap: 0px;
   overflow: scroll;
   padding: 0 20px 0 20px;
+  min-width: 300px;
 }
 
 .card {
@@ -151,7 +147,7 @@ h4 {
   font-style: italic;
 }
 
-.heading {
+.heading, .listHeading {
   color: $paper;
   font-weight: 200;
   margin: $cardSpace/2 0 $cardSpace/4 0;
@@ -162,8 +158,51 @@ h4 {
   margin:  -$cardSpace/4 0 $cardSpace/4 $cardSpace/4;
 }
 
+// *** Media Queries *** //
+
+@media screen and (min-width: 698px) {
+  .mainScroll {
+    width: 85%;
+    max-width: 1000px;
+    margin: 0 auto;
+    }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: $cardSpace;
+    grid-template-areas:
+    "upperLeft  upperRight"
+    "lowerLeft lowerRight";
+    }
+
+  .heading {
+    grid-area: upperLeft;
+    position: sticky;
+    }
+
+  .userInputCard {
+    grid-area: lowerLeft;
+    max-height: 300px;
+    position: sticky;
+    }
+
+  .listHeading {
+    grid-area: upperRight;
+    position: sticky;
+    }
+
+  .roomList {
+    grid-area: lowerRight;
+    margin-top: -$cardSpace/2;
+    overflow: scroll;
+    }
+  }
+
 // *** Utility classes *** //
 .hidden {
+  font-size: 2px;
   opacity: 0;
 }
 
