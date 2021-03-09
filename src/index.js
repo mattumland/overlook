@@ -1,5 +1,6 @@
 import './css/styles.scss';
-import './assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg';
+// import './assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg';
+// import image from './assets/overlook-logo-01.png';
 import APICaller from './apiCaller';
 import CurrentUser from './CurrentUser';
 import Hotel from './Hotel';
@@ -136,6 +137,7 @@ function roomSearch() {
 
   if (!searchResults.length) {
     fierceApology();
+    return;
   }
 
   updateHeadsUp(`Rooms available on ${searchDate.value}`);
@@ -156,7 +158,7 @@ function addConfirmationCard(message, bookingDetails) {
   clearList();
   const confirmation = `
   <section class="roomCard">
-    <h2>Booking confirmed
+    <h2>Booking confirmed<h2>
     <h3>Room ${bookingDetails[0]} - ${bookingDetails[1]}</h3>
     <h4>${message}</h4>
     <button id='home'>Done</button>
@@ -181,7 +183,15 @@ function updateHeadsUp(message) {
 }
 
 function fierceApology() {
-  updateHeading("There are no rooms available for that day. We are sickened and disgraced by our failure and hope that one day you may find in your heart to forgive us. Please adjust your search and try again.");
+  clearList();
+  updateHeadsUp("Oops");
+  const apology = `
+    <section class="roomCard">
+      <h2>We're really sorry<h2>
+      <h3>There are no rooms available for that day. We are sickened and disgraced by our failure and hope that one day you may find in your heart to forgive us.</h3>
+      <h4>Please adjust your search and try again<h4>
+  `
+  roomList.innerHTML += apology;
 }
 
 function clearList() {
