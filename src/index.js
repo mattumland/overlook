@@ -1,5 +1,4 @@
 import './css/styles.scss';
-import './assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg';
 import APICaller from './apiCaller';
 import CurrentUser from './CurrentUser';
 import Hotel from './Hotel';
@@ -7,13 +6,13 @@ import Hotel from './Hotel';
 const userCard = document.querySelector('#user-card');
 const userGreeting = document.querySelector('#user-greeting');
 const accountTotal = document.querySelector('#account-total');
+const todayDate = document.querySelector('#today')
 const roomList = document.querySelector('#room-list');
 const roomSearchButton = document.querySelector('#room-search');
 const searchDate = document.querySelector("#book-date");
 const dateError = document.querySelector("#date-error");
 const formBoxes = document.querySelectorAll("input[type='checkbox']");
 const headsUp = document.querySelector("#heads-up");
-const roomCard = document.querySelector("#room-card");
 const loginCard = document.querySelector('#login-card');
 const loginButton = document.querySelector("#login");
 const nameInput = document.querySelector('#user-name');
@@ -24,7 +23,7 @@ const passwordError = document.querySelector('#password-error');
 const grid = document.querySelector('#grid');
 
 const api = new APICaller();
-const today = '2020/02/07';
+const today = '2020-02-07';
 const password = 'overlook2021';
 let user = null;
 let hotel = null;
@@ -41,8 +40,7 @@ function login() {
   if (!nameInput.value) {
     render(nameError);
     return;
-  }
-  else if (!passwordLogin.value) {
+  } else if (!passwordLogin.value) {
     render(passwordMissing);
     return;
   } else if (!(passwordLogin.value === password)) {
@@ -50,6 +48,8 @@ function login() {
     return;
   }
   const userID = parseInt(nameInput.value.slice(8));
+  searchDate.min = `${today}`;
+  todayDate.innerText = `${today}`;
   pageLoad(userID);
 }
 
@@ -63,7 +63,8 @@ function pageLoad(userID) {
       buildUserDashboard();
       render(userCard);
       render(grid);
-    });
+    })
+    .catch(err => alert('There was a problem with the server. Please reload the page.'));
 }
 
 function buildUserDashboard() {
@@ -80,13 +81,12 @@ function buildBookingDeck(bookings) {
 
 function buildBookingCard(booking) {
   const roomData = hotel.getRoomDetails([booking.roomNumber]);
-  const bidet = (roomData[0].bidet) ? "Yup" : "Nope";
   return `
     <section class="roomCard">
       <h3>Room ${booking.roomNumber} - ${roomData[0].roomType}</h3>
       <h4>${booking.date}</h4>
     </section>`;
-};
+}
 
 function buildRoomDeck(rooms, date) {
   clearList();
@@ -97,7 +97,7 @@ function buildRoomDeck(rooms, date) {
 
 function buildRoomCard(room, date) {
   const bidet = (room.bidet) ? "Yup" : "Nope";
-    return `
+  return `
       <section class="roomCard">
         <h3>Room ${room.number} - ${room.roomType}</h3>
         <h4>$${room.costPerNight} per night</h4>
@@ -115,7 +115,7 @@ function bookRoom(targetId) {
   const booking = {"userID": user.id, "date": bookingDetails[1], "roomNumber": parseInt(bookingDetails[0])};
   Promise.all([api.bookARoom(booking)])
     .then((bookingResponse) => {
-    addConfirmationCard(bookingResponse[0].message, bookingDetails)
+      addConfirmationCard(bookingResponse[0].message, bookingDetails)
     });
 }
 
@@ -133,6 +133,7 @@ function roomSearch() {
 
   if (!searchResults.length) {
     fierceApology();
+    return;
   }
 
   updateHeadsUp(`Rooms available on ${searchDate.value}`);
@@ -141,7 +142,7 @@ function roomSearch() {
 
 function getFormInput() {
   const formKeys = Object.keys(formBoxes)
-    return formKeys.reduce((roomTypes, key) => {
+  return formKeys.reduce((roomTypes, key) => {
     if (formBoxes[key].checked) {
       roomTypes.push(formBoxes[key].id);
     }
@@ -153,7 +154,7 @@ function addConfirmationCard(message, bookingDetails) {
   clearList();
   const confirmation = `
   <section class="roomCard">
-    <h2>Booking confirmed
+    <h2>Booking confirmed<h2>
     <h3>Room ${bookingDetails[0]} - ${bookingDetails[1]}</h3>
     <h4>${message}</h4>
     <button id='home'>Done</button>
@@ -162,7 +163,7 @@ function addConfirmationCard(message, bookingDetails) {
 }
 
 function formatDate(date) {
-  return date.replaceAll('-','/');
+  return date.replaceAll('-', '/');
 }
 
 function render(element) {
@@ -178,14 +179,21 @@ function updateHeadsUp(message) {
 }
 
 function fierceApology() {
-  updateHeading("There are no rooms available for that day. We are sickened and disgraced by our failure and hope that one day you may find in your heart to forgive us. Please adjust your search and try again.");
+  clearList();
+  updateHeadsUp("Oops");
+  const apology = `
+    <section class="roomCard">
+      <h2>We're really sorry<h2>
+      <h3>There are no rooms available for that day. We are sickened and disgraced by our failure and hope that one day you may find in your heart to forgive us.</h3>
+      <h4>Please adjust your search and try again<h4>
+  `
+  roomList.innerHTML += apology;
 }
 
 function clearList() {
   roomList.innerHTML = '';
 }
 
-// EVENT LISTENERS
 loginButton.addEventListener('click', login)
 roomSearchButton.addEventListener('click', roomSearch);
 roomList.addEventListener('click', function(event) {
@@ -196,5 +204,5 @@ roomList.addEventListener('click', function(event) {
     pageLoad(user.id);
   } else {
     bookRoom(event.target.id)
-    }
-  });
+  }
+});

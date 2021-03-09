@@ -23,8 +23,8 @@ describe('Hotel', function() {
       const hotel = new Hotel(roomData.rooms, bookingData.bookings);
       expect(hotel.rooms).to.equal(roomData.rooms);
       expect(hotel.bookings).to.equal(bookingData.bookings);
+    });
   });
-});
 
   describe('Hotel methods', function() {
     let hotel;
@@ -33,14 +33,14 @@ describe('Hotel', function() {
     });
 
     it('should be able to return all of a user`s bookings', function() {
-      expect(hotel.getAllBookings(1)).to.deep.equal([{
+      expect(hotel.getAllBookings(1)).to.deep.equal([
+        {
           "id": "5fwrgu4i7k55hl6t8",
           "userID": 1,
           "date": "2020/02/05",
           "roomNumber": 12,
           "roomServiceCharges": []
-        },
-        {
+        }, {
           "id": "5fwrgu4i7k55hl6tf",
           "userID": 1,
           "date": "2020/01/25",
@@ -48,38 +48,37 @@ describe('Hotel', function() {
           "roomServiceCharges": []
         }
       ])
-
     });
 
     it('should return an array of rooms when given an array of room numbers', function() {
       expect(hotel.getRoomDetails([1, 2])).to.deep.equal([
-      {
-        "number": 1,
-        "roomType": "residential suite",
-        "bidet": true,
-        "bedSize": "queen",
-        "numBeds": 1,
-        "costPerNight": 358.4
-      }, {
-        "number": 2,
-        "roomType": "suite",
-        "bidet": false,
-        "bedSize": "full",
-        "numBeds": 2,
-        "costPerNight": 477.38
-      }
-    ])
-  });
+        {
+          "number": 1,
+          "roomType": "residential suite",
+          "bidet": true,
+          "bedSize": "queen",
+          "numBeds": 1,
+          "costPerNight": 358.4
+        }, {
+          "number": 2,
+          "roomType": "suite",
+          "bidet": false,
+          "bedSize": "full",
+          "numBeds": 2,
+          "costPerNight": 477.38
+        }
+      ])
+    });
 
-  it('should be able to return all dollars spent by a user', function() {
-    expect(hotel.getTotalSpent(1)).to.equal(649.47);
-    expect(hotel.getTotalSpent(2)).to.equal(999.33);
-  });
+    it('should be able to return all dollars spent by a user', function() {
+      expect(hotel.getTotalSpent(1)).to.equal(649.47);
+      expect(hotel.getTotalSpent(2)).to.equal(999.33);
+    });
 
 
-  it('should be able to return a list of available rooms for a given date', function() {
-    expect(hotel.getAvailableRooms('2020/02/05')).to.deep.equal(
-      [{
+    it('should be able to return a list of available rooms for a given date', function() {
+      expect(hotel.getAvailableRooms('2020/02/05')).to.deep.equal(
+        [{
           "number": 1,
           "roomType": "residential suite",
           "bidet": true,
@@ -223,38 +222,19 @@ describe('Hotel', function() {
           "numBeds": 1,
           "costPerNight": 343.95
         }
-      ])
-  });
+        ])
+    });
 
-  it('should be able to sort a room list by room number', function() {
-    const roomList = [
-      {
-        "number": 10,
-        "roomType": "suite",
-        "bidet": false,
-        "bedSize": "twin",
-        "numBeds": 1,
-        "costPerNight": 497.64
-      },
-      {
-          "number": 2,
+    it('should be able to sort a room list by room number', function() {
+      const roomList = [
+        {
+          "number": 10,
           "roomType": "suite",
           "bidet": false,
-          "bedSize": "full",
-          "numBeds": 2,
-          "costPerNight": 477.38
-      },
-      {
-        "number": 7,
-        "roomType": "single room",
-        "bidet": false,
-        "bedSize": "queen",
-        "numBeds": 2,
-        "costPerNight": 231.46
-      },
-    ]
-    expect(hotel.sortListByNumber(roomList)).to.deep.equal(
-      [
+          "bedSize": "twin",
+          "numBeds": 1,
+          "costPerNight": 497.64
+        },
         {
           "number": 2,
           "roomType": "suite",
@@ -271,22 +251,41 @@ describe('Hotel', function() {
           "numBeds": 2,
           "costPerNight": 231.46
         },
-        {
-          "number": 10,
-          "roomType": "suite",
-          "bidet": false,
-          "bedSize": "twin",
-          "numBeds": 1,
-          "costPerNight": 497.64
-        }
-      ])
-  });
+      ]
+      expect(hotel.sortListByNumber(roomList)).to.deep.equal(
+        [
+          {
+            "number": 2,
+            "roomType": "suite",
+            "bidet": false,
+            "bedSize": "full",
+            "numBeds": 2,
+            "costPerNight": 477.38
+          },
+          {
+            "number": 7,
+            "roomType": "single room",
+            "bidet": false,
+            "bedSize": "queen",
+            "numBeds": 2,
+            "costPerNight": 231.46
+          },
+          {
+            "number": 10,
+            "roomType": "suite",
+            "bidet": false,
+            "bedSize": "twin",
+            "numBeds": 1,
+            "costPerNight": 497.64
+          }
+        ])
+    });
 
-  it('should be able to return a filtered array of room given an initial array and an array of room types', function() {
-    const roomTypes1 = ['suite'];
-    const roomTypes2 = ['single room', 'junior suite'];
-    expect(hotel.filterRoomList(hotel.rooms, roomTypes1)).to.deep.equal(
-      [{
+    it('should be able to return a filtered array of room given an initial array and an array of room types', function() {
+      const roomTypes1 = ['suite'];
+      const roomTypes2 = ['single room', 'junior suite'];
+      expect(hotel.filterRoomList(hotel.rooms, roomTypes1)).to.deep.equal(
+        [{
           "number": 2,
           "roomType": "suite",
           "bidet": false,
@@ -302,11 +301,10 @@ describe('Hotel', function() {
           "numBeds": 1,
           "costPerNight": 497.64
         }
-      ]
-    );
+        ]);
 
-    expect(hotel.filterRoomList(hotel.rooms, roomTypes2)).to.deep.equal(
-      [{
+      expect(hotel.filterRoomList(hotel.rooms, roomTypes2)).to.deep.equal(
+        [{
           "number": 3,
           "roomType": "single room",
           "bidet": false,
@@ -418,7 +416,8 @@ describe('Hotel', function() {
           "numBeds": 1,
           "costPerNight": 374.67
         },
-      ])
+        ]);
+
     });
   });
 });
