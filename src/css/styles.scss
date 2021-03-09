@@ -158,7 +158,15 @@ h4 {
 }
 
 // *** Media Queries *** //
-@media screen and (min-width: 698px) {
+@media screen and (min-width: 475px) {
+  .mainScroll {
+    width: 72%;
+    max-width: 1000px;
+    margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 713px) {
   .mainScroll {
     width: 85%;
     max-width: 1000px;
