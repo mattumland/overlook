@@ -23,8 +23,6 @@ const passwordMissing = document.querySelector('#password-missing');
 const passwordError = document.querySelector('#password-error');
 const grid = document.querySelector('#grid');
 
-console.log(passwordLogin);
-
 const api = new APICaller();
 const today = '2020/02/07';
 const password = 'overlook2021';
