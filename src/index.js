@@ -65,7 +65,8 @@ function pageLoad(userID) {
       buildUserDashboard();
       render(userCard);
       render(grid);
-    });
+    })
+    .catch(err => alert('There was a problem with the server. Please reload the page.'));
 }
 
 function buildUserDashboard() {
@@ -196,7 +197,7 @@ function clearList() {
   roomList.innerHTML = '';
 }
 
-// EVENT LISTENERS
+
 loginButton.addEventListener('click', login)
 roomSearchButton.addEventListener('click', roomSearch);
 roomList.addEventListener('click', function(event) {

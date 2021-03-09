@@ -33,22 +33,21 @@ describe('Hotel', function() {
     });
 
     it('should be able to return all of a user`s bookings', function() {
-      expect(hotel.getAllBookings(1)).to.deep.equal([{
-        "id": "5fwrgu4i7k55hl6t8",
-        "userID": 1,
-        "date": "2020/02/05",
-        "roomNumber": 12,
-        "roomServiceCharges": []
-      },
-      {
-        "id": "5fwrgu4i7k55hl6tf",
-        "userID": 1,
-        "date": "2020/01/25",
-        "roomNumber": 2,
-        "roomServiceCharges": []
-      }
+      expect(hotel.getAllBookings(1)).to.deep.equal([
+        {
+          "id": "5fwrgu4i7k55hl6t8",
+          "userID": 1,
+          "date": "2020/02/05",
+          "roomNumber": 12,
+          "roomServiceCharges": []
+        }, {
+          "id": "5fwrgu4i7k55hl6tf",
+          "userID": 1,
+          "date": "2020/01/25",
+          "roomNumber": 2,
+          "roomServiceCharges": []
+        }
       ])
-
     });
 
     it('should return an array of rooms when given an array of room numbers', function() {

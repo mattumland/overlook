@@ -8,7 +8,6 @@ class APICaller {
   getAllCustomers() {
     return fetch(this.customer)
       .then(response => {
-
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -20,7 +19,6 @@ class APICaller {
   getOneCustomer(id) {
     return fetch(this.customer + `/${id}`)
       .then(response => {
-
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -43,7 +41,6 @@ class APICaller {
   getAllBookings() {
     return fetch(this.bookings)
       .then(response => {
-
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -59,17 +56,12 @@ class APICaller {
       body: JSON.stringify(booking)
     })
       .then(response => {
-
         if (!response.ok) {
           throw new Error(response.statusText);
         }
         return response.json();
       })
       .catch(err => console.log(err))
-  }
-
-  deleteBooking() {
-
   }
 }
 
