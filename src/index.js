@@ -1,5 +1,4 @@
 import './css/styles.scss';
-// import './assets/evgeni-evgeniev-LPKk3wtkC-g-unsplash.jpg';
 // import image from './assets/overlook-logo-01.png';
 import APICaller from './apiCaller';
 import CurrentUser from './CurrentUser';
@@ -43,8 +42,7 @@ function login() {
   if (!nameInput.value) {
     render(nameError);
     return;
-  }
-  else if (!passwordLogin.value) {
+  } else if (!passwordLogin.value) {
     render(passwordMissing);
     return;
   } else if (!(passwordLogin.value === password)) {
@@ -90,7 +88,7 @@ function buildBookingCard(booking) {
       <h3>Room ${booking.roomNumber} - ${roomData[0].roomType}</h3>
       <h4>${booking.date}</h4>
     </section>`;
-};
+}
 
 function buildRoomDeck(rooms, date) {
   clearList();
@@ -101,7 +99,7 @@ function buildRoomDeck(rooms, date) {
 
 function buildRoomCard(room, date) {
   const bidet = (room.bidet) ? "Yup" : "Nope";
-    return `
+  return `
       <section class="roomCard">
         <h3>Room ${room.number} - ${room.roomType}</h3>
         <h4>$${room.costPerNight} per night</h4>
@@ -119,7 +117,7 @@ function bookRoom(targetId) {
   const booking = {"userID": user.id, "date": bookingDetails[1], "roomNumber": parseInt(bookingDetails[0])};
   Promise.all([api.bookARoom(booking)])
     .then((bookingResponse) => {
-    addConfirmationCard(bookingResponse[0].message, bookingDetails)
+      addConfirmationCard(bookingResponse[0].message, bookingDetails)
     });
 }
 
@@ -146,7 +144,7 @@ function roomSearch() {
 
 function getFormInput() {
   const formKeys = Object.keys(formBoxes)
-    return formKeys.reduce((roomTypes, key) => {
+  return formKeys.reduce((roomTypes, key) => {
     if (formBoxes[key].checked) {
       roomTypes.push(formBoxes[key].id);
     }
@@ -167,7 +165,7 @@ function addConfirmationCard(message, bookingDetails) {
 }
 
 function formatDate(date) {
-  return date.replaceAll('-','/');
+  return date.replaceAll('-', '/');
 }
 
 function render(element) {
@@ -209,5 +207,5 @@ roomList.addEventListener('click', function(event) {
     pageLoad(user.id);
   } else {
     bookRoom(event.target.id)
-    }
-  });
+  }
+});
