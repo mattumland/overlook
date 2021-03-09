@@ -31,11 +31,34 @@ body {
   overflow: scroll;
   padding: 0 20px 0 20px;
   min-width: 300px;
+
+  button {
+    background-color: $background-color;
+    color: $paper;
+    font-size: 14px;
+    border: 2px solid $background-color;
+    border-radius: 2px;
+    padding: $cardSpace/4;
+    margin: $cardSpace/4 0;
+  }
 }
 
 .card {
   background-color: $paper;
   border-radius: 2px;
+}
+
+.loginCard {
+    @extend .card;
+    // max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: $cardSpace;
+
+    input, button {
+      max-width: 70%;
+    }
 }
 
 .userCard {
@@ -49,16 +72,6 @@ body {
   @extend .card;
   padding: $cardSpace/4 0 $cardSpace/4 $cardSpace/2;
   margin: $cardSpace/2 0 $cardSpace/2 0;
-
-  button {
-    background-color: $background-color;
-    color: $paper;
-    font-size: 14px;
-    border: 2px solid $background-color;
-    border-radius: 2px;
-    padding: $cardSpace/4;
-    margin: $cardSpace/4 0;
-  }
 }
 
 .roomFeatures {
@@ -76,7 +89,7 @@ body {
   padding: $cardSpace/4;
 }
 
-.datePicker {
+.inputField {
   background-color: $paper;
   border: 1px solid #000000;
   border-radius: 2px;
@@ -165,6 +178,15 @@ h4 {
     width: 85%;
     max-width: 1000px;
     margin: 0 auto;
+    }
+
+    .loginCard {
+      display: flex;
+      flex-direction: column;
+      max-width: 70%;
+      padding: $cardSpace/4;
+
+
     }
 
   .grid {

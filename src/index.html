@@ -10,15 +10,26 @@
   <body>
     <main class="mainScroll">
       <h1 class="logoTitle">Overlook</h1>
-      <section class="userCard">
+      <section id="login-card" class="loginCard">
+        <h2 id="">Welcome</h2>
+        <input class="inputField" type="text" id="user-name" name="user-name" placeholder="user name">
+        <label class="hidden" for="user-name">User name</label>
+        <p id="name-error" class="error noRender">&#128680;Please enter a user name</p>
+        <input class="inputField" type="password" id="password" name="password" placeholder="password">
+        <label class="hidden" for="password">Password</label>
+        <p id="password-missing" class="error noRender">&#128680;Please enter a password</p>
+        <p id="password-error" class="error noRender">&#128680;Password is incorrect</p>
+        <button id="login">login</button>
+      </section>
+      <section id="user-card" class="noRender userCard">
         <h2 id="user-greeting">Hello</h2>
         <h3 id="account-total">Account total: </h3>
       </section>
-      <div class="grid">
+      <div id="grid" class="grid noRender">
         <h3 class="heading">Book a room</h3>
         <section id="user-input" class="userInputCard">
           <h4>Check-in date </h4>
-          <input class="datePicker" type="date" id="book-date"></input>
+          <input class="inputField" type="date" id="book-date"></input>
           <label class="hidden" for="book-date">Check-in date</label>
           <p id="date-error" class="error noRender">&#128680;Please enter a check-in date</p>
           <h4>Filter by room type</h4>
