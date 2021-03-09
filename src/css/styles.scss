@@ -31,11 +31,29 @@ body {
   overflow: scroll;
   padding: 0 20px 0 20px;
   min-width: 300px;
+
+  button {
+    background-color: $background-color;
+    color: $paper;
+    font-size: 14px;
+    border: 2px solid $background-color;
+    border-radius: 2px;
+    padding: $cardSpace/4;
+    margin: $cardSpace/4 0;
+  }
 }
 
 .card {
   background-color: $paper;
   border-radius: 2px;
+}
+
+.loginCard {
+    @extend .card;
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    padding: $cardSpace/4;
 }
 
 .userCard {
@@ -50,15 +68,7 @@ body {
   padding: $cardSpace/4 0 $cardSpace/4 $cardSpace/2;
   margin: $cardSpace/2 0 $cardSpace/2 0;
 
-  button {
-    background-color: $background-color;
-    color: $paper;
-    font-size: 14px;
-    border: 2px solid $background-color;
-    border-radius: 2px;
-    padding: $cardSpace/4;
-    margin: $cardSpace/4 0;
-  }
+
 }
 
 .roomFeatures {

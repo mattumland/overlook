@@ -10,11 +10,19 @@
   <body>
     <main class="mainScroll">
       <h1 class="logoTitle">Overlook</h1>
-      <section class="userCard">
+      <section class="loginCard">
+        <h2 id="">Welcome</h2>
+        <input type="text" id="user-name" name="user-name" value="user name" required>
+        <label class="hidden" for="user-name">User name</label>
+        <input type="password" id="password" name="password" value="password" required>
+        <label class="hidden" for="password">Password</label>
+        <button id="login">login</button>
+      </section>
+      <section class="hidden userCard">
         <h2 id="user-greeting">Hello</h2>
         <h3 id="account-total">Account total: </h3>
       </section>
-      <div class="grid">
+      <div class="grid hidden">
         <h3 class="heading">Book a room</h3>
         <section id="user-input" class="userInputCard">
           <h4>Check-in date </h4>
