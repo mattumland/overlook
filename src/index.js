@@ -1,5 +1,4 @@
 import './css/styles.scss';
-// import image from './assets/overlook-logo-01.png';
 import APICaller from './apiCaller';
 import CurrentUser from './CurrentUser';
 import Hotel from './Hotel';
@@ -194,7 +193,6 @@ function fierceApology() {
 function clearList() {
   roomList.innerHTML = '';
 }
-
 
 loginButton.addEventListener('click', login)
 roomSearchButton.addEventListener('click', roomSearch);
