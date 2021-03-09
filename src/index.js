@@ -14,7 +14,6 @@ const searchDate = document.querySelector("#book-date");
 const dateError = document.querySelector("#date-error");
 const formBoxes = document.querySelectorAll("input[type='checkbox']");
 const headsUp = document.querySelector("#heads-up");
-const roomCard = document.querySelector("#room-card");
 const loginCard = document.querySelector('#login-card');
 const loginButton = document.querySelector("#login");
 const nameInput = document.querySelector('#user-name');
@@ -83,7 +82,6 @@ function buildBookingDeck(bookings) {
 
 function buildBookingCard(booking) {
   const roomData = hotel.getRoomDetails([booking.roomNumber]);
-  const bidet = (roomData[0].bidet) ? "Yup" : "Nope";
   return `
     <section class="roomCard">
       <h3>Room ${booking.roomNumber} - ${roomData[0].roomType}</h3>
