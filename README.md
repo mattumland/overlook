@@ -1,109 +1,64 @@
-<<<<<<< HEAD
 # OVERLOOK
 
-## Let's party!
+## Contributors
+* Matt Umland
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+## Overview
+Overview is a booking app for a hotel. After a user logs in, they can review their past reservations, see their total spending and book a room. Simple filtering and a drop down date input allows users to refine their search. The app uses asynchronous JavaScript to pull date from a backend via an API. It is fully responsive for desktop, phone and tablet and uses semantic html and ARIA labels for accessibility.
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+##### Walkthrough
+![](assets/README-285b7922.gif)
 
-Now try to commit something and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+##### Responsive Design
+![](assets/README-507a3fa2.gif)
 
-## Setup
+#### Login Credentials
+* **username** - There are 50 user names starting with customer1 and ending with customer50.  Any user name beginning with "customer" and ending with a 1 or 2 digit number, less than or equal to 50.    
+ _(e.g. customer1, customer24, customer47)_
+* **password** - overlook2021
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+### Reference images
+![](assets/README-53891ad6.png)
 
-Then install the library dependencies. Run:
+### Class structure sketch
+![](assets/README-3c689aec.png)
 
-```bash
-npm install
-```
+### Background image by Evgeni Evgeniev, unsplash.com
+![](assets/README-cbe3f9ff.jpg)
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with some `h1` text, Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+### Color palette
+![](assets/README-db204cf1.png)
 
-## Where to Add Your Code
+## Reflection
+My general approach for this project was to get a lot out of a small amount of pieces. This was manifested in multiple ways in the final product:
+1. A large beautiful background image, which defined the color palette and ensured the site always featured something visually engaging.
+2. A small number of classes with highly flexible methods that could be deployed in multiple arrangements to meet the user stories.
+3. Using SASS to create consistent card styles, colors and spacing that made adding and removing elements from the page straightforward and efficient.
 
-### JavaScript
+## Installation and Setup
+1. Clone down this repo.
+2. Install dependencies in the root directory with `npm install`
+3. Clone the backend api at https://github.com/turingschool-examples/overlook-api
+4. Start up the backend with `npm install` then `npm start`
+5. Start the client with `npm start` in the root project directory
+6. Go to http://localhost:8080/ to see the app.
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+## Tech Stack
+* Languages
+  * Vanilla JS
+  * HTML
+  * CSS & SASS
+* Web browser engine & compiler
+  * Webpack
+* Testing suite
+  * Mocha
+  * Chai
+* Project management tool
+  * Trello - kanban board
+  * Miro whiteboard - mapping out program architecture
 
-**Create all of your feature code files in the `src` directory.**
-
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
-
-Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
-
-### HTML
-
-Add the HTML you need in the `index.html` file in the `./src` directory. There is some boilerplate HTML that exists from the start that you can modify.
-
-### CSS (SCSS/SASS)
-
-This project is setup to use SCSS/SASS files by default instead of your regular CSS files. Add your SCSS files in the `src/css` directory. There is a `base.scss` file already there, but you can change this file and add multiple SCSS files in this directory.
-
-This might sound weird, but you need to `import` your SCSS files in the JavaScript entry file (`index.js`) for the styles to be applied to your HTML. The example `base.scss` file has already been imported in the JavaScript entry file as an example.
-
-### Images
-
-Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`index.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
-
-## How to View Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
-
-You will see a bunch of lines output to your terminal. One of those lines will be something like:
-
-```bash
-Project is running at http://localhost:8080/
-```
-
-Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
-
----
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit - the linter is still running successfully.
-
-Your linter will look at the JavaScript files you have within the `src` directory and the `test` directory.
-
-## Webpack?
-
-If you look in the `package.json` file, you'll see one of the library dependencies called `webpack`. If you're interested in learning more about what Webpack is and how it works behind the scenes, take a look through the [Webpack configuration documentation](https://webpack.js.org/concepts/).
-
-## Deploying to GitHub Pages
-
-_If you are finished with the functionality and testing of your project_, then you can consider deploying your project to the web! This way anyone can play it without cloning down your repo.
-
-[GitHub Pages](https://pages.github.com/) is a great way to deploy your project to the web. Don't worry about this until your project is free of bugs and well tested!
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
-=======
-# overlook
->>>>>>> 5a24a68eb77b8bdfb9f9e7b917fe4805f180bc0f
+## Future Iterations
+ * Add manager class and functionality
+ * Isolate scrolling to only include the booking list in desktop view
+ * Add a logo to the header bar
+ * Sort reservation data and dashboard by past, present (today) and future
