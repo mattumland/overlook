@@ -7,6 +7,7 @@ import Hotel from './Hotel';
 const userCard = document.querySelector('#user-card');
 const userGreeting = document.querySelector('#user-greeting');
 const accountTotal = document.querySelector('#account-total');
+const todayDate = document.querySelector('#today')
 const roomList = document.querySelector('#room-list');
 const roomSearchButton = document.querySelector('#room-search');
 const searchDate = document.querySelector("#book-date");
@@ -24,7 +25,7 @@ const passwordError = document.querySelector('#password-error');
 const grid = document.querySelector('#grid');
 
 const api = new APICaller();
-const today = '2020/02/07';
+const today = '2020-02-07';
 const password = 'overlook2021';
 let user = null;
 let hotel = null;
@@ -50,6 +51,8 @@ function login() {
     return;
   }
   const userID = parseInt(nameInput.value.slice(8));
+  searchDate.min = `${today}`;
+  todayDate.innerText = `${today}`;
   pageLoad(userID);
 }
 
