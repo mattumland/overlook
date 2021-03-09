@@ -4,6 +4,7 @@ import APICaller from './apiCaller';
 import CurrentUser from './CurrentUser';
 import Hotel from './Hotel';
 
+const userCard = document.querySelector('#user-card');
 const userGreeting = document.querySelector('#user-greeting');
 const accountTotal = document.querySelector('#account-total');
 const roomList = document.querySelector('#room-list');
@@ -13,11 +14,22 @@ const dateError = document.querySelector("#date-error");
 const formBoxes = document.querySelectorAll("input[type='checkbox']");
 const headsUp = document.querySelector("#heads-up");
 const roomCard = document.querySelector("#room-card");
+const loginCard = document.querySelector('#login-card');
+const loginButton = document.querySelector("#login");
+const nameInput = document.querySelector('#user-name');
+const nameError = document.querySelector("#name-error");
+const passwordLogin = document.querySelector('#password');
+const passwordMissing = document.querySelector('#password-missing');
+const passwordError = document.querySelector('#password-error');
+const grid = document.querySelector('#grid');
+
+console.log(passwordLogin);
 
 const api = new APICaller();
-let user;
-let hotel;
 const today = '2020/02/07';
+const password = 'overlook2021';
+let user = null;
+let hotel = null;
 
 const createUser = (userData) => {
   user = new CurrentUser(userData);
@@ -25,6 +37,35 @@ const createUser = (userData) => {
 
 const createHotel = (roomData, bookingData) => {
   hotel = new Hotel(roomData, bookingData);
+}
+
+function login() {
+  if (!nameInput.value) {
+    render(nameError);
+    return;
+  }
+  else if (!passwordLogin.value) {
+    render(passwordMissing);
+    return;
+  } else if (!(passwordLogin.value === password)) {
+    render(passwordError);
+    return;
+  }
+  const userID = parseInt(nameInput.value.slice(8));
+  pageLoad(userID);
+}
+
+function pageLoad(userID) {
+  derender(loginCard);
+  Promise.all([api.getOneCustomer(userID), api.getAllRooms(), api.getAllBookings()])
+    .then((allData) => {
+      updateHeadsUp('Your Reservations')
+      createUser(allData[0]);
+      createHotel(allData[1].rooms, allData[2].bookings);
+      buildUserDashboard();
+      render(userCard);
+      render(grid);
+    });
 }
 
 function buildUserDashboard() {
@@ -47,7 +88,6 @@ function buildBookingCard(booking) {
       <h3>Room ${booking.roomNumber} - ${roomData[0].roomType}</h3>
       <h4>${booking.date}</h4>
     </section>`;
-    //may need to add the booking ID to this block so they can be targeted later
 };
 
 function buildRoomDeck(rooms, date) {
@@ -70,16 +110,6 @@ function buildRoomCard(room, date) {
         </ul>
         <button id="${room.number}-${date}">Book Now</button>
       </section>`
-}
-
-function pageLoad() {
-  Promise.all([api.getOneCustomer(1), api.getAllRooms(), api.getAllBookings()])
-    .then((allData) => {
-      updateHeadsUp('Your Reservations')
-      createUser(allData[0]);
-      createHotel(allData[1].rooms, allData[2].bookings);
-      buildUserDashboard();
-    });
 }
 
 function bookRoom(targetId) {
@@ -158,14 +188,14 @@ function clearList() {
 }
 
 // EVENT LISTENERS
-window.addEventListener('load', pageLoad);
+loginButton.addEventListener('click', login)
 roomSearchButton.addEventListener('click', roomSearch);
 roomList.addEventListener('click', function(event) {
   if (!event.target.id) {
     return
   } else if (event.target.id === 'home') {
     clearList();
-    pageLoad();
+    pageLoad(user.id);
   } else {
     bookRoom(event.target.id)
     }
