@@ -302,8 +302,7 @@ describe('Hotel', function() {
           "numBeds": 1,
           "costPerNight": 497.64
         }
-      ]
-    );
+      ]);
 
     expect(hotel.filterRoomList(hotel.rooms, roomTypes2)).to.deep.equal(
       [{
@@ -418,7 +417,8 @@ describe('Hotel', function() {
           "numBeds": 1,
           "costPerNight": 374.67
         },
-      ])
+      ]);
+
     });
   });
 });
