@@ -55,6 +55,7 @@ function login() {
 
 function pageLoad(userID) {
   derender(loginCard);
+  resetButtons();
   Promise.all([api.getOneCustomer(userID), api.getAllRooms(), api.getAllBookings()])
     .then((allData) => {
       updateHeadsUp('Your Reservations')
@@ -71,6 +72,12 @@ function buildUserDashboard() {
   userGreeting.innerText = `Hello ${user.getFirstName()}`;
   accountTotal.innerText = `Account total: $${hotel.getTotalSpent(user.id)}`
   buildBookingDeck(hotel.getAllBookings(user.id));
+}
+
+function resetButtons() {
+  formBoxes.forEach(box => {
+    box.checked = false; 
+  })
 }
 
 function buildBookingDeck(bookings) {
